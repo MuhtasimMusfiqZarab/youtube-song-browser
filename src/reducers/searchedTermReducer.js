@@ -1,12 +1,11 @@
-import { FETCH_VIDEOS } from "../actions/types";
+import { SAVE_SEARCHED_TERM } from "../actions/types";
 
 //exporting reducer
 // null means  request is processing still
 export default function (state = null, action) {
-  console.log(action);
   switch (action.type) {
-    //fetch user returns null, false or the user model
-    case FETCH_VIDEOS:
+    case SAVE_SEARCHED_TERM:
+      console.log("This is searched term in redux", action.payload);
       return action.payload;
     default:
       return state;

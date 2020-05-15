@@ -1,18 +1,25 @@
-// import axios from "axios";
+import { FETCH_VIDEOS, SAVE_SEARCHED_TERM, SELECTED_VIDEO } from "./types";
+import youtubeAPI, { API_DEFAULT_PARAMS } from "../api/youtubeAPI";
 
-import { FETCH_VIDEOS } from "./types";
-import youtubeAPI from "../api/youtubeAPI";
+export const saveSearchedTerm = (searchedTerm) => async (dispatch) => {
+  dispatch({ type: SAVE_SEARCHED_TERM, payload: searchedTerm });
+};
 
 export const fetchVideos = (searchedTerm) => async (dispatch) => {
-  //getting the searched data
-  const res = await youtubeAPI.get("/", {
-    params: {
-      part: "snippet", //returns videos
-      id: 10, //returns music category
-      key: "AIzaSyARgbJ1NMrR8WSvsGpAJzBWNmUlQ6ohbjk",
-      q: "colddplay",
-    },
-  });
-  console.log(res);
-  dispatch({ type: FETCH_VIDEOS, payload: res.data });
+  try {
+    const res = await youtubeAPI.get("/search", {
+      params: {
+        ...API_DEFAULT_PARAMS,
+        q: searchedTerm,
+      },
+    });
+    dispatch({ type: FETCH_VIDEOS, payload: res.data.items });
+  } catch (error) {
+    console.log(error.response);
+  }
+};
+
+//save the selected video
+export const getSelectedVideo = (video) => async (dispatch) => {
+  dispatch({ type: SELECTED_VIDEO, payload: video });
 };

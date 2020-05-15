@@ -1,10 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const VideoList = () => {
+import VideoItem from "./VideoItem";
+
+const VideoList = ({ videos, selectedVideo }) => {
+  //no videos found
+  if (videos === null) {
+    return <div></div>;
+  }
+  //else
+  if (selectedVideo !== null) {
+    console.log("Selected video", selectedVideo.id.videoId);
+  }
+
+  //filter
+
   return (
     <div>
-      <p>This is video list</p>
+      {videos.map((video, index) =>
+        index !== 0 ? (
+          <VideoItem key={video.id.videoId} video={video} />
+        ) : (
+          <div key={1}></div>
+        )
+      )}
     </div>
   );
 };
@@ -12,6 +31,7 @@ const VideoList = () => {
 const mapStateToProps = (state) => {
   return {
     videos: state.searchedVideos,
+    selectedVideo: state.selectedVideo,
   };
 };
 

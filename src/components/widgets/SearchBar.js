@@ -11,9 +11,12 @@ const SearchBar = ({ fetchVideos }) => {
   //seach form submission
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(artist, songTitle);
-    //feching videos
-    fetchVideos(`${artist}+${songTitle}`);
+    //concatinating keywords to send for search
+    let artistKeyword = artist.replace(" ", "+");
+    let songTitleKeyword = songTitle.replace(" ", "+");
+    let searchTerm = artistKeyword.concat("+", songTitleKeyword);
+    console.log("THis is searchTemr", searchTerm);
+    fetchVideos(searchTerm);
   };
 
   return (
