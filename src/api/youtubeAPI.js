@@ -6,7 +6,7 @@ export const API_DEFAULT_PARAMS = {
   id: 10, //returns music category
   key: process.env.REACT_APP_YOUTUBE_API_KEY,
   // key: youtubeAPIkey,
-  maxResults: 10,
+  maxResults: 20,
   type: "video",
   // q: "coldplay", //we will be providing the q==query term
 };

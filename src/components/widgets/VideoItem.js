@@ -21,12 +21,12 @@ const VideoItem = ({
   };
 
   //no videos
-  if (videoItem === null) return <div>Loading...</div>;
+  if (videoItem === null) return <div />;
   //else
   return (
     <div
       className="card horizontal"
-      style={{ height: "94px" }}
+      style={{ height: "94px", boxShadow: "none" }}
       onClick={onVideoClick}
     >
       <div className="card-image">

@@ -22,7 +22,7 @@ const SearchBar = ({ fetchVideos, saveSearchedTerm }) => {
   };
 
   return (
-    <form>
+    <form style={{ marginTop: "10px" }}>
       <div className="row">
         <div className="input-field col s5">
           <input

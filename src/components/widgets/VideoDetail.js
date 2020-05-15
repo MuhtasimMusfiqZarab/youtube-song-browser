@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 
 const VidoeDetail = ({ selectedVideo }) => {
   //no videos
-  if (selectedVideo === null) return <div>Loading...</div>;
+  if (selectedVideo === null) return <div />;
   //else
 
   const videoSrc = `https://www.youtube.com/embed/${selectedVideo.id.videoId}`;
   // console.log(searchedVideos[0].id);
 
   return (
-    <div className="card">
+    <div className="card" style={{ boxShadow: "none" }}>
       <div className="card-image">
         <iframe
           frameBorder="0"
