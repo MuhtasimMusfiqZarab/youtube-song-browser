@@ -3,21 +3,31 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
-const VideoItem = ({ video, getSelectedVideo }) => {
-  const { title, channelTitle, thumbnails } = video.snippet;
-  console.log(thumbnails.medium.url);
+const VideoItem = ({
+  videoItem,
+  getSelectedVideo,
+  getLyrics,
+  searchedTerm,
+}) => {
+  const { title, channelTitle, thumbnails } = videoItem.snippet;
+  const { artist, songTitle } = searchedTerm;
+
+  //helper fucntion to get the clicked video along with the lyrics
+  const onVideoClick = () => {
+    //get the video
+    getSelectedVideo(videoItem);
+    //get the lyrics
+    getLyrics(artist, songTitle);
+  };
 
   //no videos
-  if (video === null) return <div>Loading...</div>;
+  if (videoItem === null) return <div>Loading...</div>;
   //else
-  console.log(video);
-  const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
-
   return (
     <div
       className="card horizontal"
       style={{ height: "94px" }}
-      onClick={() => getSelectedVideo(video)}
+      onClick={onVideoClick}
     >
       <div className="card-image">
         <img
@@ -57,4 +67,11 @@ const VideoItem = ({ video, getSelectedVideo }) => {
   );
 };
 
-export default connect(null, actions)(VideoItem);
+//get the artist & songtitle for lyrics
+const mapStateToProps = (state) => {
+  return {
+    searchedTerm: state.searchedTerm,
+  };
+};
+
+export default connect(mapStateToProps, actions)(VideoItem);

@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchBar, VideoDetail, VideoList } from "../widgets";
+import { SearchBar, VideoDetail, VideoList, SongLyrics } from "../widgets";
 
 const Landing = () => {
   return (
@@ -8,7 +8,10 @@ const Landing = () => {
         <SearchBar />
       </div>
       <div className="col s8">
-        <VideoDetail />
+        <div style={{ flexDirection: "column" }}>
+          <VideoDetail />
+          <SongLyrics />
+        </div>
       </div>
       <div className="col s4">
         <VideoList />

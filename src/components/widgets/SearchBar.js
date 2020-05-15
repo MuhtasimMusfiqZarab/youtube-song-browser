@@ -4,18 +4,20 @@ import { connect } from "react-redux";
 //import actions
 import * as actions from "../../actions";
 
-const SearchBar = ({ fetchVideos }) => {
+const SearchBar = ({ fetchVideos, saveSearchedTerm }) => {
   const [artist, setArtist] = useState("");
   const [songTitle, setTitle] = useState("");
 
   //seach form submission
   const onSubmit = (e) => {
     e.preventDefault();
-    //concatinating keywords to send for search
+    //store artist & song title in redux
+    saveSearchedTerm(artist, songTitle);
+    //concatinating keywords to send for the search
     let artistKeyword = artist.replace(" ", "+");
     let songTitleKeyword = songTitle.replace(" ", "+");
     let searchTerm = artistKeyword.concat("+", songTitleKeyword);
-    console.log("THis is searchTemr", searchTerm);
+    //searchTerm inscludes both the artist and the song title
     fetchVideos(searchTerm);
   };
 

@@ -17,9 +17,9 @@ const VideoList = ({ videos, selectedVideo }) => {
 
   return (
     <div>
-      {videos.map((video, index) =>
+      {videos.map((videoItem, index) =>
         index !== 0 ? (
-          <VideoItem key={video.id.videoId} video={video} />
+          <VideoItem key={videoItem.id.videoId} videoItem={videoItem} />
         ) : (
           <div key={1}></div>
         )

@@ -1,11 +1,11 @@
-import { SELECTED_VIDEO } from "../actions/types";
+import { FETCH_LYRICS } from "../actions/types";
 
-//exporting reducer
 // null means  request is processing still
 export default function (state = null, action) {
+  console.log(action);
   switch (action.type) {
-    //fetch user returns null, false or the user model
-    case SELECTED_VIDEO:
+    case FETCH_LYRICS:
+      console.log("Selected lyrics payload", action.payload);
       return action.payload;
     default:
       return state;

@@ -1,8 +1,14 @@
-import { FETCH_VIDEOS, SAVE_SEARCHED_TERM, SELECTED_VIDEO } from "./types";
+import {
+  FETCH_VIDEOS,
+  SAVE_SEARCHED_TERM,
+  SELECTED_VIDEO,
+  FETCH_LYRICS,
+} from "./types";
 import youtubeAPI, { API_DEFAULT_PARAMS } from "../api/youtubeAPI";
+import lyricsovh from "../api/lyricsovh";
 
-export const saveSearchedTerm = (searchedTerm) => async (dispatch) => {
-  dispatch({ type: SAVE_SEARCHED_TERM, payload: searchedTerm });
+export const saveSearchedTerm = (artist, songTitle) => async (dispatch) => {
+  dispatch({ type: SAVE_SEARCHED_TERM, payload: { artist, songTitle } });
 };
 
 export const fetchVideos = (searchedTerm) => async (dispatch) => {
@@ -22,4 +28,16 @@ export const fetchVideos = (searchedTerm) => async (dispatch) => {
 //save the selected video
 export const getSelectedVideo = (video) => async (dispatch) => {
   dispatch({ type: SELECTED_VIDEO, payload: video });
+};
+
+//get the lyrics of the selected video
+export const getLyrics = (artist, songTitle) => async (dispatch) => {
+  //API request
+  try {
+    const res = await lyricsovh.get(`/${artist}/${songTitle}`);
+    console.log("Lyrics response", res);
+    dispatch({ type: FETCH_LYRICS, payload: res.data });
+  } catch (error) {
+    console.log(error.response);
+  }
 };
