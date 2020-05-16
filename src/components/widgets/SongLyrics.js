@@ -1,16 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-const SongLyrics = ({ songLyrics, selectedVideo }) => {
-  //if not found yet
-  if (songLyrics === null) return <div />;
-  const { title } = selectedVideo.snippet;
+import NoLyricsError from "./NoLyricsError";
+
+const SongLyrics = ({ songLyrics, searchedTerm, selectedVideo }) => {
+  //this file needs to be updated when the state changes to get the correct info
+  // useEffect(() => {}, [selectedVideo, searchedTerm]);
+
+  //if no seachterm provided
+  if (
+    (searchedTerm === null && selectedVideo === null) ||
+    (searchedTerm !== null && selectedVideo === null)
+  ) {
+    return <div />;
+  }
+
+  //provided searchTerm & clicked on a video to show it, found no lyrics
+  if (selectedVideo !== null && songLyrics === null) {
+    return <NoLyricsError />;
+  }
+  const { artist, songTitle } = searchedTerm;
 
   return (
-    <div className="card" style={{ textAlign: "center", boxShadow: "none" }}>
-      <span className="card-title">{title}</span>
+    <div
+      className="card"
+      style={{
+        textAlign: "center",
+        boxShadow: "none",
+      }}
+    >
+      <span className="card-title">{`${artist.toUpperCase()}-${songTitle.toUpperCase()}`}</span>
 
-      <div className="card-content" style={{ whiteSpace: "pre-wrap" }}>
+      <div
+        className="card-content"
+        style={{
+          whiteSpace: "pre-wrap",
+        }}
+      >
         <p>{songLyrics.lyrics}</p>
       </div>
     </div>
@@ -20,6 +46,7 @@ const SongLyrics = ({ songLyrics, selectedVideo }) => {
 const mapStateToProps = (state) => {
   return {
     songLyrics: state.songLyrics,
+    searchedTerm: state.searchedTerm,
     selectedVideo: state.selectedVideo,
   };
 };

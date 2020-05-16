@@ -3,6 +3,7 @@ import {
   SAVE_SEARCHED_TERM,
   SELECTED_VIDEO,
   FETCH_LYRICS,
+  CLEAR_SESSION,
 } from "./types";
 import youtubeAPI, { API_DEFAULT_PARAMS } from "../api/youtubeAPI";
 import lyricsovh from "../api/lyricsovh";
@@ -21,7 +22,9 @@ export const fetchVideos = (searchedTerm) => async (dispatch) => {
     });
     dispatch({ type: FETCH_VIDEOS, payload: res.data.items });
   } catch (error) {
-    console.log(error.response);
+    //no lyrics is found, thus clear the previous lyrics stored in the redux
+    const { message } = error.response.data.error;
+    console.log(message);
   }
 };
 
@@ -40,4 +43,10 @@ export const getLyrics = (artist, songTitle) => async (dispatch) => {
   } catch (error) {
     console.log(error.response);
   }
+};
+
+//for clearing the redux store when a new search is initiated
+
+export const clearSession = () => async (dispatch) => {
+  dispatch({ type: CLEAR_SESSION });
 };

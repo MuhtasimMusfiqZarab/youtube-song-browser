@@ -5,10 +5,33 @@ import searchedTermReducer from "./searchedTermReducer";
 import selectedVideoReducers from "./selectedVideoReducers";
 import songLyricsReducer from "./songLyricsReducer";
 
+//would remove it
+import { CLEAR_SESSION } from "../actions/types";
+
 //the object we are passing in the combine reducer- whatever key we are passing to the object are going to represent the kes in the state of the redux
-export default combineReducers({
+const appReducer = combineReducers({
   searchedTerm: searchedTermReducer,
   searchedVideos: searchedVideosReducer,
   selectedVideo: selectedVideoReducers,
   songLyrics: songLyricsReducer,
 });
+
+//this is for resetting the redux store when necessary
+const rootReducer = (state, action) => {
+  //reducers return the initial state when they are called with undefined as the first argument
+
+  if (action.type === CLEAR_SESSION) {
+    // state = undefined; //we would use it to reset all the keys of redux
+    console.log("Clear session ran");
+    state = undefined; //resetting all
+  }
+
+  if (action.type === "RESET_SAVED_LYRICS") {
+    //selectively picking what not to reset
+    const { searchedTerm, searchedVideos, selectedVideo } = state;
+    state = { searchedTerm, searchedVideos, selectedVideo };
+  }
+  return appReducer(state, action);
+};
+
+export default rootReducer;

@@ -4,13 +4,56 @@ import { connect } from "react-redux";
 //import actions
 import * as actions from "../../actions";
 
-const SearchBar = ({ fetchVideos, saveSearchedTerm }) => {
+const SearchBar = ({
+  fetchVideos,
+  searchedTerm,
+  saveSearchedTerm,
+  getLyrics,
+  clearSession,
+}) => {
   const [artist, setArtist] = useState("");
   const [songTitle, setTitle] = useState("");
+
+  //check if previous search is same as the new one
+  const sameSearchAsPrevious = (newSearchTerm) => {
+    //no previous search or no new search
+    if (newSearchTerm === undefined || searchedTerm === null) return false;
+
+    // Create arrays of property names
+    let aProps = Object.getOwnPropertyNames(searchedTerm);
+    let bProps = Object.getOwnPropertyNames(newSearchTerm);
+
+    //number of properties is different,
+    if (aProps.length !== bProps.length) {
+      return false;
+    }
+
+    for (let i = 0; i < aProps.length; i++) {
+      let propName = aProps[i];
+      //values of same property are not equal,
+      if (searchedTerm[propName] !== newSearchTerm[propName]) {
+        return false;
+      }
+    }
+    //if not then equivalent
+    console.log("true returned");
+    return true;
+  };
 
   //seach form submission
   const onSubmit = (e) => {
     e.preventDefault();
+
+    //if two consicutive seares are the same
+    const sameSearch = sameSearchAsPrevious({ artist, songTitle }); //newSearchTerm as arg
+    //clear the previous session if searches are different
+    if (!sameSearch) {
+      clearSession();
+    }
+
+    //if there is no value for artist or song title then do nothing
+    if (artist === "" && songTitle === "" && sameSearch) return;
+
     //store artist & song title in redux
     saveSearchedTerm(artist, songTitle);
     //concatinating keywords to send for the search
@@ -19,6 +62,8 @@ const SearchBar = ({ fetchVideos, saveSearchedTerm }) => {
     let searchTerm = artistKeyword.concat("+", songTitleKeyword);
     //searchTerm inscludes both the artist and the song title
     fetchVideos(searchTerm);
+    //fetch the lyrics
+    getLyrics(artist, songTitle);
   };
 
   return (
@@ -46,7 +91,7 @@ const SearchBar = ({ fetchVideos, saveSearchedTerm }) => {
         </div>
 
         <button
-          className="btn waves-effect waves-light col s2 input-field"
+          className="btn col s2 input-field"
           type="submit"
           name="action"
           onClick={(e) => onSubmit(e)}
@@ -59,4 +104,10 @@ const SearchBar = ({ fetchVideos, saveSearchedTerm }) => {
   );
 };
 
-export default connect(null, actions)(SearchBar);
+const mapStateToProps = (state) => {
+  return {
+    searchedTerm: state.searchedTerm,
+  };
+};
+
+export default connect(mapStateToProps, actions)(SearchBar);

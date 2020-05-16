@@ -3,21 +3,13 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
-const VideoItem = ({
-  videoItem,
-  getSelectedVideo,
-  getLyrics,
-  searchedTerm,
-}) => {
+const VideoItem = ({ videoItem, getSelectedVideo, searchedTerm }) => {
   const { title, channelTitle, thumbnails } = videoItem.snippet;
-  const { artist, songTitle } = searchedTerm;
 
   //helper fucntion to get the clicked video along with the lyrics
   const onVideoClick = () => {
     //get the video
     getSelectedVideo(videoItem);
-    //get the lyrics
-    getLyrics(artist, songTitle);
   };
 
   //no videos
@@ -49,7 +41,7 @@ const VideoItem = ({
             lineHeight: "1.6rem",
           }}
         >
-          {title}
+          {title.length > 50 ? title.substring(0, 50) + " ..." : title}
         </div>
 
         <h6
@@ -67,11 +59,4 @@ const VideoItem = ({
   );
 };
 
-//get the artist & songtitle for lyrics
-const mapStateToProps = (state) => {
-  return {
-    searchedTerm: state.searchedTerm,
-  };
-};
-
-export default connect(mapStateToProps, actions)(VideoItem);
+export default connect(null, actions)(VideoItem);
