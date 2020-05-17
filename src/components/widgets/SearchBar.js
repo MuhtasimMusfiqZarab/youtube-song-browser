@@ -98,6 +98,7 @@ const SearchBar = ({
           className="btn col s2 input-field"
           type="submit"
           name="action"
+          style={{ fontSize: "12px" }}
           onClick={(e) => onSubmit(e)}
         >
           Search
