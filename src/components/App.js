@@ -1,18 +1,22 @@
 import React from "react";
 //react-router
-import { BrowserRouter, Route } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 
 import Header from "./widgets/Header";
-import Landing from "./pages/Landing";
+import Home from "./pages/Home";
+import ErrorPage from "./pages/ErrorPage";
+
+import history from "../history";
 
 function App() {
   return (
     <>
       <Header />
       <div className="container">
-        <BrowserRouter>
-          <Route path="/" exact component={Landing} />
-        </BrowserRouter>
+        <Router history={history}>
+          <Route path="/" exact component={Home} />
+          <Route path="/error" exact component={ErrorPage} />
+        </Router>
       </div>
     </>
   );

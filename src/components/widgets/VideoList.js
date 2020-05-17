@@ -18,6 +18,20 @@ const VideoList = ({ selectedVideo, searchedVideos, trendingVideos }) => {
     </div>
   );
 
+  //if no videos found
+  if (searchedVideos.length === 0) {
+    return (
+      <h6
+        style={{
+          textAlign: "center",
+          marginBottom: "15px",
+        }}
+      >
+        No Videos Found!
+      </h6>
+    );
+  }
+
   return (
     <div>
       <h6 style={{ textAlign: "center", marginBottom: "15px" }}>

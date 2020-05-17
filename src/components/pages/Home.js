@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { SearchBar, VideoDetail, VideoList, SongLyrics } from "../widgets";
 
-const Landing = ({ selectedVideo }) => {
+const Home = ({ selectedVideo }) => {
   return (
     <div className="row parent">
       <div className="col s12">
@@ -33,4 +33,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Landing);
+export default connect(mapStateToProps, null)(Home);

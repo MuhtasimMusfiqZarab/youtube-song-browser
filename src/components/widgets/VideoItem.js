@@ -68,15 +68,16 @@ const VideoItem = ({
             fontSize: "14px",
             fontWeight: 500,
             lineHeight: "1.6rem",
+            //to cup after this line
           }}
         >
-          {title.length > 50 ? title.substring(0, 45) + " ..." : title}
+          {title.length > 40 ? title.substring(0, 40) + " ..." : title}
         </div>
 
         <h6
           style={{
             marginTop: "0px",
-            marginBottom: 10,
+            marginBottom: 5,
             color: "#606060",
             fontSize: "13px",
           }}
@@ -87,7 +88,7 @@ const VideoItem = ({
           <img
             src={PlayIcon}
             alt="Play Icon"
-            style={{ width: "15px", height: "auto" }}
+            style={{ width: "10px", height: "auto" }}
           />
         )}
       </div>

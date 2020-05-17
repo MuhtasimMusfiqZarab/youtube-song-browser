@@ -32,6 +32,7 @@ const SongLyrics = ({ songLyrics, searchedTerm, selectedVideo }) => {
         className="card-content"
         style={{
           whiteSpace: "pre-wrap",
+          color: "#673ab7 ",
         }}
       >
         <p>{songLyrics.lyrics}</p>

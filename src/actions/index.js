@@ -6,16 +6,16 @@ import {
   FETCH_LYRICS,
   CLEAR_SESSION,
 } from "./types";
-import youtubeAPI, {
-  API_DEFAULT_PARAMS,
-  TRENDING_API_DEFAULT_PARAMS,
-} from "../api/youtubeAPI";
-import lyricsovh from "../api/lyricsovh";
+import youtubeAPI, { API_DEFAULT_PARAMS } from "../api/youtubeAPI";
+import lyricsovh, { TRENDING_API_DEFAULT_PARAMS } from "../api/lyricsovh";
+
+import history from "../history";
 
 export const saveSearchedTerm = (artist, songTitle) => async (dispatch) => {
   dispatch({ type: SAVE_SEARCHED_TERM, payload: { artist, songTitle } });
 };
 
+//get trending
 export const fetchTrendingVideos = (searchedTerm) => async (dispatch) => {
   try {
     const res = await youtubeAPI.get("/videos", {
@@ -26,7 +26,8 @@ export const fetchTrendingVideos = (searchedTerm) => async (dispatch) => {
     dispatch({ type: FETCH_TRENDING_VIDEOS, payload: res.data.items });
   } catch (error) {
     //no lyrics is found, thus clear the previous lyrics stored in the redux
-    console.log(error);
+    console.log(error.message);
+    history.push("/error");
   }
 };
 export const fetchVideos = (searchedTerm) => async (dispatch) => {
@@ -43,6 +44,7 @@ export const fetchVideos = (searchedTerm) => async (dispatch) => {
     //no lyrics is found, thus clear the previous lyrics stored in the redux
     // const { message } = error.response.data.error;
     console.log(error);
+    history.push("/error");
   }
 };
 
