@@ -9,18 +9,13 @@ const Home = ({ selectedVideo }) => {
       <div className="col s12">
         <SearchBar />
       </div>
-      <div className="col s8">
+      <div className="col m8 s12">
         <div style={{ flexDirection: "column" }}>
           <VideoDetail />
-
           <SongLyrics />
         </div>
       </div>
-      {/*<div className="col s4">
-        
-        <VideoList />
-  </div>*/}
-      <div className={selectedVideo === null ? "col s12" : "col s4"}>
+      <div className={selectedVideo === null ? "col s12" : "col m4 s12"}>
         <VideoList />
       </div>
     </div>
