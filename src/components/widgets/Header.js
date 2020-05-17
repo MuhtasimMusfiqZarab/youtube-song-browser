@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { FaYoutube } from "react-icons/fa";
 
 const Header = () => {

@@ -24,8 +24,6 @@ const rootReducer = (state, action) => {
   //reducers return the initial state when they are called with undefined as the first argument
 
   if (action.type === CLEAR_SESSION) {
-    // state = undefined; //we would use it to reset all the keys of redux
-    console.log("Clear session ran");
     state = undefined; //resetting all
   }
 

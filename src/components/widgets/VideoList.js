@@ -6,7 +6,7 @@ import VideoItem from "./VideoItem";
 import HorizontalLine from "./HorizontalLine";
 // import HorizontalListItem from "./HorizontalListItem";
 
-const VideoList = ({ selectedVideo, searchedVideos, trendingVideos }) => {
+const VideoList = ({ searchedVideos }) => {
   //no videos found
   if (searchedVideos === null) {
     return <div></div>;
@@ -54,8 +54,6 @@ const VideoList = ({ selectedVideo, searchedVideos, trendingVideos }) => {
 const mapStateToProps = (state) => {
   return {
     searchedVideos: state.searchedVideos,
-    selectedVideo: state.selectedVideo,
-    trendingVideos: state.trendingVideos,
   };
 };
 

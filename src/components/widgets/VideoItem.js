@@ -6,12 +6,7 @@ import * as actions from "../../actions";
 //import svg icon
 import PlayIcon from "../../assets/images/play.svg";
 
-const VideoItem = ({
-  videoItem,
-  getSelectedVideo,
-  searchedTerm,
-  selectedVideo,
-}) => {
+const VideoItem = ({ videoItem, getSelectedVideo, selectedVideo }) => {
   const { title, channelTitle, thumbnails } = videoItem.snippet;
   //if the item is hovered
   const [hover, setHover] = useState(false);
