@@ -12,7 +12,7 @@ const VidoeDetail = ({ selectedVideo }) => {
   // console.log(searchedVideos[0].id);
 
   return (
-    <>
+    <div>
       <div className="card" style={{ boxShadow: "none" }}>
         <div className="card-image">
           <iframe
@@ -39,7 +39,7 @@ const VidoeDetail = ({ selectedVideo }) => {
         </div>
       </div>
       <HorizontalLine />
-    </>
+    </div>
   );
 };
 

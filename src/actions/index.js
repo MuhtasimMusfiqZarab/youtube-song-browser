@@ -45,8 +45,8 @@ export const fetchVideos = (searchedTerm) => async (dispatch) => {
     dispatch({ type: FETCH_VIDEOS, payload: res.data.items });
   } catch (error) {
     //no lyrics is found, thus clear the previous lyrics stored in the redux
-    const { message } = error.response.data.error;
-    console.log(message);
+    // const { message } = error.response.data.error;
+    console.log(error);
   }
 };
 

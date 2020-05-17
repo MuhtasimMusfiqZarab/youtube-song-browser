@@ -12,8 +12,9 @@ const NoLyricsError = () => {
         }}
       >
         <p>
-          You need to provide valid inputs for both the artist name & the song
-          title in the seach form field to get the lyrics!
+          You need to provide valid inputs for both the{" "}
+          <h4 style={{ fontWeight: "bold" }}>"artist & song title"</h4> in the
+          seach form field to get the lyrics!
         </p>
       </div>
     </div>

@@ -4,10 +4,10 @@ const HorizontalLine = () => {
   return (
     <hr
       style={{
-        color: "#E8E6E5",
-        backgroundColor: "#E8E6E5",
+        color: "#eeeeee",
+        backgroundColor: "#eeeeee",
         height: 0.5,
-        borderColor: "#E8E6E5",
+        borderColor: "#eeeeee",
       }}
     />
   );
