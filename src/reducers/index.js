@@ -29,13 +29,8 @@ const rootReducer = (state, action) => {
 
   if (action.type === RESET_SAVED_LYRICS) {
     //selectively picking what not to reset
-    const {
-      searchedTerm,
-      searchedVideos,
-      selectedVideo,
-      trendingVideos,
-    } = state;
-    state = { searchedTerm, searchedVideos, selectedVideo, trendingVideos };
+    const { trendingVideos } = state;
+    state = { trendingVideos };
   }
   return appReducer(state, action);
 };
