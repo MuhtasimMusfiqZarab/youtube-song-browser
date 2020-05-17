@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import NoLyricsError from "./NoLyricsError";
 
 const SongLyrics = ({ songLyrics, searchedTerm, selectedVideo }) => {
-  //this file needs to be updated when the state changes to get the correct info
-  // useEffect(() => {}, [selectedVideo, searchedTerm]);
-
   //if no seachterm provided
   if (
     (searchedTerm === null && selectedVideo === null) ||

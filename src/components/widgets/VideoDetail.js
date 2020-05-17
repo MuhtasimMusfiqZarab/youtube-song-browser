@@ -9,7 +9,6 @@ const VidoeDetail = ({ selectedVideo }) => {
   //else
 
   const videoSrc = `https://www.youtube.com/embed/${selectedVideo.id.videoId}`;
-  // console.log(searchedVideos[0].id);
 
   return (
     <div>
@@ -21,6 +20,7 @@ const VidoeDetail = ({ selectedVideo }) => {
             width="100%"
             title="Video Player"
             src={videoSrc}
+            allow="autoplay; fullscreen"
           />
           {/*<span className="card-title">Card Title</span>*/}
         </div>

@@ -18,7 +18,7 @@ const SearchBar = ({
   //feching trendingVideos on initial load
   useEffect(() => {
     fetchTrendingVideos();
-  }, []);
+  }, [fetchTrendingVideos]);
 
   //check if previous search is same as the new one
   const sameSearchAsPrevious = (newSearchTerm) => {

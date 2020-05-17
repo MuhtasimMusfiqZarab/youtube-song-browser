@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FixedSizeList as List } from "react-window";
 import { connect } from "react-redux";
 

@@ -17,19 +17,16 @@ export const saveSearchedTerm = (artist, songTitle) => async (dispatch) => {
 };
 
 export const fetchTrendingVideos = (searchedTerm) => async (dispatch) => {
-  console.log("Fetch trending videos ran");
   try {
     const res = await youtubeAPI.get("/videos", {
       params: {
         ...TRENDING_API_DEFAULT_PARAMS,
       },
     });
-    console.log("Trending videos response", res.data.items);
     dispatch({ type: FETCH_TRENDING_VIDEOS, payload: res.data.items });
   } catch (error) {
     //no lyrics is found, thus clear the previous lyrics stored in the redux
-    const { message } = error;
-    console.log("From fetch trending videos:", message);
+    console.log(error);
   }
 };
 export const fetchVideos = (searchedTerm) => async (dispatch) => {
@@ -40,7 +37,6 @@ export const fetchVideos = (searchedTerm) => async (dispatch) => {
         q: searchedTerm,
       },
     });
-    console.log("videos response", res.data.items);
 
     dispatch({ type: FETCH_VIDEOS, payload: res.data.items });
   } catch (error) {
@@ -60,7 +56,6 @@ export const getLyrics = (artist, songTitle) => async (dispatch) => {
   //API request
   try {
     const res = await lyricsovh.get(`/${artist}/${songTitle}`);
-    console.log("Lyrics response", res);
     dispatch({ type: FETCH_LYRICS, payload: res.data });
   } catch (error) {
     console.log(error.response);
