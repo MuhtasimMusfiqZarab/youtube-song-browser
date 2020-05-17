@@ -24,15 +24,19 @@ const SongLyrics = ({ songLyrics, searchedTerm, selectedVideo }) => {
       style={{
         textAlign: "center",
         boxShadow: "none",
+        backgroundColor: "#fafafa  ",
       }}
     >
-      <span className="card-title">{`${artist.toUpperCase()}-${songTitle.toUpperCase()}`}</span>
+      <span
+        className="card-title"
+        style={{ color: "red" }}
+      >{`${artist.toUpperCase()}-${songTitle.toUpperCase()}`}</span>
 
       <div
         className="card-content"
         style={{
           whiteSpace: "pre-wrap",
-          color: "#673ab7 ",
+          color: "black ",
         }}
       >
         <p>{songLyrics.lyrics}</p>
