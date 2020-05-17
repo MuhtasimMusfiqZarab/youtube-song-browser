@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //connect helper
 import { connect } from "react-redux";
 //import actions
 import * as actions from "../../actions";
 
 const SearchBar = ({
+  fetchTrendingVideos,
   fetchVideos,
   searchedTerm,
   saveSearchedTerm,
@@ -13,6 +14,11 @@ const SearchBar = ({
 }) => {
   const [artist, setArtist] = useState("");
   const [songTitle, setTitle] = useState("");
+
+  //feching trendingVideos on initial load
+  useEffect(() => {
+    fetchTrendingVideos();
+  }, []);
 
   //check if previous search is same as the new one
   const sameSearchAsPrevious = (newSearchTerm) => {
@@ -35,8 +41,6 @@ const SearchBar = ({
         return false;
       }
     }
-    //if not then equivalent
-    console.log("true returned");
     return true;
   };
 

@@ -1,17 +1,37 @@
 import {
   FETCH_VIDEOS,
   SAVE_SEARCHED_TERM,
+  FETCH_TRENDING_VIDEOS,
   SELECTED_VIDEO,
   FETCH_LYRICS,
   CLEAR_SESSION,
 } from "./types";
-import youtubeAPI, { API_DEFAULT_PARAMS } from "../api/youtubeAPI";
+import youtubeAPI, {
+  API_DEFAULT_PARAMS,
+  TRENDING_API_DEFAULT_PARAMS,
+} from "../api/youtubeAPI";
 import lyricsovh from "../api/lyricsovh";
 
 export const saveSearchedTerm = (artist, songTitle) => async (dispatch) => {
   dispatch({ type: SAVE_SEARCHED_TERM, payload: { artist, songTitle } });
 };
 
+export const fetchTrendingVideos = (searchedTerm) => async (dispatch) => {
+  console.log("Fetch trending videos ran");
+  try {
+    const res = await youtubeAPI.get("/videos", {
+      params: {
+        ...TRENDING_API_DEFAULT_PARAMS,
+      },
+    });
+    console.log("Trending videos response", res.data.items);
+    dispatch({ type: FETCH_TRENDING_VIDEOS, payload: res.data.items });
+  } catch (error) {
+    //no lyrics is found, thus clear the previous lyrics stored in the redux
+    const { message } = error.response.data.error;
+    console.log("From fetch trending videos:", message);
+  }
+};
 export const fetchVideos = (searchedTerm) => async (dispatch) => {
   try {
     const res = await youtubeAPI.get("/search", {
@@ -20,6 +40,8 @@ export const fetchVideos = (searchedTerm) => async (dispatch) => {
         q: searchedTerm,
       },
     });
+    console.log("videos response", res.data.items);
+
     dispatch({ type: FETCH_VIDEOS, payload: res.data.items });
   } catch (error) {
     //no lyrics is found, thus clear the previous lyrics stored in the redux

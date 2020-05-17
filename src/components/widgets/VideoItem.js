@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 const VideoItem = ({ videoItem, getSelectedVideo, searchedTerm }) => {
   const { title, channelTitle, thumbnails } = videoItem.snippet;
+  //if the item is hovered
+  const [hover, setHover] = useState(false);
 
   //helper fucntion to get the clicked video along with the lyrics
   const onVideoClick = () => {
@@ -18,8 +20,13 @@ const VideoItem = ({ videoItem, getSelectedVideo, searchedTerm }) => {
   return (
     <div
       className="card horizontal"
-      style={{ height: "94px", boxShadow: "none" }}
+      style={
+        hover
+          ? { height: "94px", boxShadow: "none", cursor: "pointer" }
+          : { height: "94px", boxShadow: "none" }
+      }
       onClick={onVideoClick}
+      onMouseOver={() => setHover(true)}
     >
       <div className="card-image">
         <img

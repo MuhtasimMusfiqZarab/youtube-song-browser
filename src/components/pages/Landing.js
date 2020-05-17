@@ -1,9 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import { SearchBar, VideoDetail, VideoList, SongLyrics } from "../widgets";
 
-const Landing = () => {
+const Landing = ({ selectedVideo }) => {
   return (
-    <div className="row" style={{}}>
+    <div className="row parent">
       <div className="col s12">
         <SearchBar />
       </div>
@@ -13,11 +15,21 @@ const Landing = () => {
           <SongLyrics />
         </div>
       </div>
-      <div className="col s4">
+      {/*<div className="col s4">
+        
+        <VideoList />
+  </div>*/}
+      <div className={selectedVideo === null ? "col s12" : "col s4"}>
         <VideoList />
       </div>
     </div>
   );
 };
 
-export default Landing;
+const mapStateToProps = (state) => {
+  return {
+    selectedVideo: state.selectedVideo,
+  };
+};
+
+export default connect(mapStateToProps, null)(Landing);

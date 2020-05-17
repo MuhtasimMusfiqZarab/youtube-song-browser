@@ -1,37 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import { FixedSizeList as List } from "react-window";
 import { connect } from "react-redux";
 
 import VideoItem from "./VideoItem";
+// import HorizontalListItem from "./HorizontalListItem";
 
-const VideoList = ({ videos, selectedVideo }) => {
+const VideoList = ({ selectedVideo, searchedVideos, trendingVideos }) => {
   //no videos found
-  if (videos === null) {
+  if (searchedVideos === null) {
     return <div></div>;
   }
-  //else
-  if (selectedVideo !== null) {
-    console.log("Selected video", selectedVideo.id.videoId);
-  }
 
-  //filter
+  const Row = ({ index, style }) => (
+    <div style={style}>
+      <VideoItem videoItem={searchedVideos[index]} />
+    </div>
+  );
 
   return (
     <div>
-      {videos.map((videoItem, index) =>
-        index !== 0 ? (
-          <VideoItem key={videoItem.id.videoId} videoItem={videoItem} />
-        ) : (
-          <div key={1}></div>
-        )
-      )}
+      <h6 style={{ textAlign: "center", marginBottom: "20px" }}>
+        Search Result
+      </h6>
+      <List
+        className="List"
+        height={600}
+        itemCount={searchedVideos.length}
+        itemSize={100}
+        width={"100%"}
+      >
+        {Row}
+      </List>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    videos: state.searchedVideos,
+    searchedVideos: state.searchedVideos,
     selectedVideo: state.selectedVideo,
+    trendingVideos: state.trendingVideos,
   };
 };
 

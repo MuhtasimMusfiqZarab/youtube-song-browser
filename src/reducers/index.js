@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import searchedVideosReducer from "./searchedVideosReducer";
 import searchedTermReducer from "./searchedTermReducer";
 import selectedVideoReducers from "./selectedVideoReducers";
+import trendingVideosReducer from "./trendingVideosReducer";
 import songLyricsReducer from "./songLyricsReducer";
 
 //would remove it
@@ -14,6 +15,7 @@ const appReducer = combineReducers({
   searchedVideos: searchedVideosReducer,
   selectedVideo: selectedVideoReducers,
   songLyrics: songLyricsReducer,
+  trendingVideos: trendingVideosReducer,
 });
 
 //this is for resetting the redux store when necessary
@@ -28,8 +30,13 @@ const rootReducer = (state, action) => {
 
   if (action.type === "RESET_SAVED_LYRICS") {
     //selectively picking what not to reset
-    const { searchedTerm, searchedVideos, selectedVideo } = state;
-    state = { searchedTerm, searchedVideos, selectedVideo };
+    const {
+      searchedTerm,
+      searchedVideos,
+      selectedVideo,
+      trendingVideos,
+    } = state;
+    state = { searchedTerm, searchedVideos, selectedVideo, trendingVideos };
   }
   return appReducer(state, action);
 };
