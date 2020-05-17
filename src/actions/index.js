@@ -28,7 +28,7 @@ export const fetchTrendingVideos = (searchedTerm) => async (dispatch) => {
     dispatch({ type: FETCH_TRENDING_VIDEOS, payload: res.data.items });
   } catch (error) {
     //no lyrics is found, thus clear the previous lyrics stored in the redux
-    const { message } = error.response.data.error;
+    const { message } = error;
     console.log("From fetch trending videos:", message);
   }
 };

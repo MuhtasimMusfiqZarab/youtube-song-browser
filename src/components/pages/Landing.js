@@ -12,6 +12,7 @@ const Landing = ({ selectedVideo }) => {
       <div className="col s8">
         <div style={{ flexDirection: "column" }}>
           <VideoDetail />
+
           <SongLyrics />
         </div>
       </div>

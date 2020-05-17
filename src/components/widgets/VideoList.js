@@ -3,6 +3,7 @@ import { FixedSizeList as List } from "react-window";
 import { connect } from "react-redux";
 
 import VideoItem from "./VideoItem";
+import HorizontalLine from "./HorizontalLine";
 // import HorizontalListItem from "./HorizontalListItem";
 
 const VideoList = ({ selectedVideo, searchedVideos, trendingVideos }) => {
@@ -19,9 +20,10 @@ const VideoList = ({ selectedVideo, searchedVideos, trendingVideos }) => {
 
   return (
     <div>
-      <h6 style={{ textAlign: "center", marginBottom: "20px" }}>
+      <h6 style={{ textAlign: "center", marginBottom: "15px" }}>
         Search Result
       </h6>
+      <HorizontalLine />
       <List
         className="List"
         height={600}
