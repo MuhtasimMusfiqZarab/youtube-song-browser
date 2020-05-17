@@ -10,7 +10,7 @@ const SearchBar = ({
   searchedTerm,
   saveSearchedTerm,
   getLyrics,
-  clearSession,
+  clearSavedLyrics,
 }) => {
   const [artist, setArtist] = useState("");
   const [songTitle, setTitle] = useState("");
@@ -52,7 +52,7 @@ const SearchBar = ({
     const sameSearch = sameSearchAsPrevious({ artist, songTitle }); //newSearchTerm as arg
     //clear the previous session if searches are different
     if (!sameSearch) {
-      clearSession();
+      clearSavedLyrics();
     }
 
     //if there is no value for artist or song title then do nothing

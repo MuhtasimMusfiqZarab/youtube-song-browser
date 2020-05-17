@@ -8,6 +8,7 @@ import songLyricsReducer from "./songLyricsReducer";
 
 //would remove it
 import { CLEAR_SESSION } from "../actions/types";
+import { RESET_SAVED_LYRICS } from "../actions/types";
 
 //the object we are passing in the combine reducer- whatever key we are passing to the object are going to represent the kes in the state of the redux
 const appReducer = combineReducers({
@@ -28,7 +29,7 @@ const rootReducer = (state, action) => {
     state = undefined; //resetting all
   }
 
-  if (action.type === "RESET_SAVED_LYRICS") {
+  if (action.type === RESET_SAVED_LYRICS) {
     //selectively picking what not to reset
     const {
       searchedTerm,

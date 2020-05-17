@@ -5,6 +5,7 @@ import {
   SELECTED_VIDEO,
   FETCH_LYRICS,
   CLEAR_SESSION,
+  RESET_SAVED_LYRICS,
 } from "./types";
 import youtubeAPI, { API_DEFAULT_PARAMS } from "../api/youtubeAPI";
 import lyricsovh, { TRENDING_API_DEFAULT_PARAMS } from "../api/lyricsovh";
@@ -62,6 +63,11 @@ export const getLyrics = (artist, songTitle) => async (dispatch) => {
   } catch (error) {
     console.log(error.response);
   }
+};
+
+//clears the lyrics from redux
+export const clearSavedLyrics = () => async (dispatch) => {
+  dispatch({ type: RESET_SAVED_LYRICS });
 };
 
 //for clearing the redux store when a new search is initiated
