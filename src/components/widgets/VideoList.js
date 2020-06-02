@@ -6,7 +6,7 @@ import VideoItem from "./VideoItem";
 import HorizontalLine from "./HorizontalLine";
 // import HorizontalListItem from "./HorizontalListItem";
 
-const VideoList = ({ searchedVideos }) => {
+const VideoList = ({ searchedVideos, scrollToTop }) => {
   //no videos found
   if (searchedVideos === null) {
     return <div></div>;
@@ -14,7 +14,7 @@ const VideoList = ({ searchedVideos }) => {
 
   const Row = ({ index, style }) => (
     <div style={style}>
-      <VideoItem videoItem={searchedVideos[index]} />
+      <VideoItem videoItem={searchedVideos[index]} scrollToTop={scrollToTop} />
     </div>
   );
 

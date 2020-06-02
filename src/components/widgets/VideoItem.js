@@ -6,7 +6,12 @@ import * as actions from "../../actions";
 //import svg icon
 import PlayIcon from "../../assets/images/play.svg";
 
-const VideoItem = ({ videoItem, getSelectedVideo, selectedVideo }) => {
+const VideoItem = ({
+  videoItem,
+  getSelectedVideo,
+  selectedVideo,
+  scrollToTop,
+}) => {
   const { title, channelTitle, thumbnails } = videoItem.snippet;
   //if the item is hovered
   const [hover, setHover] = useState(false);
@@ -15,6 +20,8 @@ const VideoItem = ({ videoItem, getSelectedVideo, selectedVideo }) => {
   const onVideoClick = () => {
     //get the video
     getSelectedVideo(videoItem);
+    //scroll to the media player
+    scrollToTop();
   };
 
   //check if this video is currently playing (change background style)

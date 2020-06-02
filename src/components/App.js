@@ -12,12 +12,13 @@ function App() {
   return (
     <>
       <Header />
-      <div className="container">
-        <Router history={history}>
+
+      <Router history={history}>
+        <div className="container">
           <Route path="/" exact component={Home} />
           <Route path="/error" exact component={ErrorPage} />
-        </Router>
-      </div>
+        </div>
+      </Router>
     </>
   );
 }
